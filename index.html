@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .chat-bot-container {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="chat-bot-container bg-white shadow-lg rounded-lg">
+        <div class="p-4 bg-blue-600 text-white rounded-t-lg">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="https://via.placeholder.com/40" alt="Logo" class="w-10 h-10 rounded-full">
+                    <div class="ml-3">
+                        <p class="font-bold">Bamboo EMF</p>
+                        <p class="text-sm">Nous sommes là pour vous 24h/24 et 7j/7</p>
+                    </div>
+                </div>
+                <button class="focus:outline-none text-white">&times;</button>
+            </div>
+        </div>
+        <div class="p-4">
+            <div id="main-options" class="mb-4">
+                <div class="text-gray-700">Hello, bienvenue chez Bamboo. Je suis Yvaine. Comment puis-je vous aider aujourd'hui ? 😊</div>
+                <div class="py-5">
+                    <img src="./image/téléchargement (7).png" alt="">
+                </div>
+                <div class="mt-2 flex flex-col space-y-2">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showAssistanceOptions()">Besoin d'assistance</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Faire une réclamation</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Prendre un rendez-vous</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Connaître les produits</button>
+                </div>
+            </div>
+
+            <div id="assistance-options" class="hidden mb-4">
+                <div class="text-gray-700">Quels services d'assistance vous intéressent ?</div>
+                <div class="mt-2 flex flex-col space-y-2">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Assistance technique</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Assistance pour les comptes</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Assistance pour les prêts</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showMainOptions()">Retour</button>
+                </div>
+            </div>
+
+            <div class="flex mt-4">
+                <input type="text" placeholder="Chat with Bamboo EMF" class="w-full border rounded-l-full px-4 py-2">
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-r-full">Envoyer</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
