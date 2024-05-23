@@ -24,13 +24,13 @@
                         <p class="text-sm">Nous sommes là pour vous 24h/24 et 7j/7</p>
                     </div>
                 </div>
-                <button class="focus:outline-none text-white">&times;</button>
+                <button class="focus:outline-none text-white" id="close-button">&times;</button>
             </div>
         </div>
         <div class="p-4">
             <div id="main-options" class="mb-4">
                 <div class="text-gray-700">Hello, bienvenue chez Bamboo. Je suis Yvaine. Comment puis-je vous aider aujourd'hui ? 😊</div>
-                <div class="py-5">
+                <div>
                     <img src="./image/téléchargement (7).png" alt="">
                 </div>
                 <div class="mt-2 flex flex-col space-y-2">
@@ -44,16 +44,39 @@
             <div id="assistance-options" class="hidden mb-4">
                 <div class="text-gray-700">Quels services d'assistance vous intéressent ?</div>
                 <div class="mt-2 flex flex-col space-y-2">
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Assistance technique</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Assistance pour les comptes</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showAccountAssistance()">Assistance technique</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showAccountOptions()">Assistance pour les comptes</button>
                     <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Assistance pour les prêts</button>
                     <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showMainOptions()">Retour</button>
                 </div>
             </div>
 
+            <div id="account-options" class="hidden mb-4">
+                <div class="text-gray-700">Voici les types de comptes bancaires que nous proposons :</div>
+                <div class="mt-2 grid grid-cols-1 gap-4">
+                    <div class="bg-blue-200 p-4 rounded-lg">
+                        <h3 class="text-lg font-bold text-blue-800">Compte courant</h3>
+                        <p class="text-blue-700">Le compte idéal pour la gestion quotidienne de vos finances.</p>
+                    </div>
+                    <div class="bg-blue-200 p-4 rounded-lg">
+                        <h3 class="text-lg font-bold text-blue-800">Compte épargne</h3>
+                        <p class="text-blue-700">Un compte pour épargner et faire fructifier votre argent en toute sécurité.</p>
+                    </div>
+                    <div class="bg-blue-200 p-4 rounded-lg">
+                        <h3 class="text-lg font-bold text-blue-800">Compte d'investissement</h3>
+                        <p class="text-blue-700">Pour investir dans des projets et des produits financiers.</p>
+                    </div>
+                    <div class="bg-blue-200 p-4 rounded-lg">
+                        <h3 class="text-lg font-bold text-blue-800">Compte jeune</h3>
+                        <p class="text-blue-700">Un compte conçu pour les jeunes avec des avantages spécifiques.</p>
+                    </div>
+                </div>
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-full mt-4" onclick="showAssistanceOptions()">Retour</button>
+            </div>
+
             <div class="flex mt-4">
                 <input type="text" placeholder="Chat with Bamboo EMF" class="w-full border rounded-l-full px-4 py-2">
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-r-full">Envoyer</button>
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-r-full" onclick="sendMessage()">Envoyer</button>
             </div>
         </div>
     </div>
