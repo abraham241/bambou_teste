@@ -18,7 +18,7 @@ function showMainOptions() {
 
 function sendMessage() {
     const inputField = document.querySelector('input[type="text"]');
-    alert(`Vous avez dit: ${inputField.value}`);
+    // alert(`Vous avez dit: ${inputField.value}`);
     inputField.value = '';
 }
 
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     buttons.forEach(button => {
         button.addEventListener('click', () => {
-            alert(`Vous avez choisi: ${button.textContent}`);
+            // alert(`Vous avez choisi: ${button.textContent}`);
         });
     });
 
