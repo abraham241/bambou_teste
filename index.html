@@ -1,85 +1,225 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Bot</title>
+    <title>Chat System</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        .chat-bot-container {
-            max-width: 400px;
-            margin: auto;
-            margin-top: 50px;
+        .chat-container {
+            height: 70vh;
+            overflow-y: auto;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+        .input-container input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    <div class="chat-bot-container bg-white shadow-lg rounded-lg">
-        <div class="p-4 bg-blue-600 text-white rounded-t-lg">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <img src="./image/téléchargement (7).png" alt="Logo" class="w-10 h-10 rounded-full">
-                    <div class="ml-3">
-                        <p class="font-bold">Bamboo EMF</p>
-                        <p class="text-sm">Nous sommes là pour vous 24h/24 et 7j/7</p>
-                    </div>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-lg rounded-lg w-full md:w-1/2 p-6">
+        <div class="chat-container" id="chat-container">
+            <div class="mb-4">
+                <p class="text-lg">Hello, bienvenue chez Bamboo. Je suis Yvaine. Comment puis-je vous aider aujourd'hui ? 😊</p>
+                <div class="mt-4 space-y-2" id="initial-options">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded w-full" onclick="selectService('Besoin d\'assistance')">Besoin d'assistance</button>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded w-full" onclick="selectService('Faire une réclamation')">Faire une réclamation</button>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded w-full" onclick="selectService('Prendre un rendez-vous')">Prendre un rendez-vous</button>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded w-full" onclick="selectService('Connaître les produits')">Connaître les produits</button>
                 </div>
-                <button class="focus:outline-none text-white" id="close-button">&times;</button>
             </div>
         </div>
-        <div class="p-4">
-            <div id="main-options" class="mb-4">
-                <div class="text-gray-700">Hello, bienvenue chez Bamboo. Je suis Yvaine. Comment puis-je vous aider aujourd'hui ? 😊</div>
-                <div>
-                    <img src="./image/téléchargement (7).png" alt="">
-                </div>
-                <div class="mt-2 flex flex-col space-y-2">
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showAssistanceOptions()">Besoin d'assistance</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Faire une réclamation</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Prendre un rendez-vous</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Connaître les produits</button>
-                </div>
-            </div>
-
-            <div id="assistance-options" class="hidden mb-4">
-                <div class="text-gray-700">Quels services d'assistance vous intéressent ?</div>
-                <div class="mt-2 flex flex-col space-y-2">
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showAccountAssistance()">Assistance technique</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showAccountOptions()">Assistance pour les comptes</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full">Assistance pour les prêts</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-full" onclick="showMainOptions()">Retour</button>
-                </div>
-            </div>
-
-            <div id="account-options" class="hidden mb-4">
-                <div class="text-gray-700">Voici les types de comptes bancaires que nous proposons :</div>
-                <div class="mt-2 grid grid-cols-1 gap-4">
-                    <div class="bg-blue-200 p-4 rounded-lg">
-                        <h3 class="text-lg font-bold text-blue-800">Compte courant</h3>
-                        <p class="text-blue-700">Le compte idéal pour la gestion quotidienne de vos finances.</p>
-                    </div>
-                    <div class="bg-blue-200 p-4 rounded-lg">
-                        <h3 class="text-lg font-bold text-blue-800">Compte épargne</h3>
-                        <p class="text-blue-700">Un compte pour épargner et faire fructifier votre argent en toute sécurité.</p>
-                    </div>
-                    <div class="bg-blue-200 p-4 rounded-lg">
-                        <h3 class="text-lg font-bold text-blue-800">Compte d'investissement</h3>
-                        <p class="text-blue-700">Pour investir dans des projets et des produits financiers.</p>
-                    </div>
-                    <div class="bg-blue-200 p-4 rounded-lg">
-                        <h3 class="text-lg font-bold text-blue-800">Compte jeune</h3>
-                        <p class="text-blue-700">Un compte conçu pour les jeunes avec des avantages spécifiques.</p>
-                    </div>
-                </div>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-full mt-4" onclick="showAssistanceOptions()">Retour</button>
-            </div>
-
-            <div class="flex mt-4">
-                <input type="text" placeholder="Autre requêtte particulière" class="w-full border rounded-l-full px-4 py-2">
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-r-full" onclick="sendMessage()">Envoyer</button>
-            </div>
+        <div class="input-container mt-4">
+            <input type="text" id="user-input" placeholder="Tapez votre message ici..." />
+            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="sendUserMessage()">Envoyer</button>
         </div>
+        <input type="file" id="file-input" class="hidden" onchange="handleFileUpload(event)" />
+        <button class="bg-gray-500 text-white px-4 py-2 rounded mt-2 w-full" onclick="triggerFileUpload()">Téléverser des documents</button>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        let chatContainer = document.getElementById('chat-container');
+        let userSelection = null;
+        let userAssistance = null;
+        let awaitingUpload = false;
+        let awaitingAppointmentDate = false;
+        let awaitingAppointmentTime = false;
+
+        function selectService(service) {
+            userSelection = service;
+            addChatMessage(`Vous avez choisi : ${service}`);
+            if (service === 'Besoin d\'assistance') {
+                showAssistanceOptions();
+            }
+        }
+
+        function addChatMessage(message, isUser = true) {
+            let messageElement = document.createElement('div');
+            messageElement.classList.add('mb-4', isUser ? 'text-right' : 'text-left');
+            messageElement.innerHTML = `<p class="bg-${isUser ? 'blue' : 'gray'}-200 p-2 rounded-lg inline-block">${message}</p>`;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showAssistanceOptions() {
+            let optionsHTML = `
+                <div class="mt-4 space-y-2">
+                    <button class="bg-green-500 text-white px-4 py-2 rounded w-full" onclick="selectAssistance('Assistance pour ouverture de compte')">Assistance pour ouverture de compte</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded w-full">Service 2</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded w-full">Service 3</button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded w-full">Service 4</button>
+                </div>
+            `;
+            addChatMessage('Choisissez un type d\'assistance :', false);
+            let optionsElement = document.createElement('div');
+            optionsElement.innerHTML = optionsHTML;
+            chatContainer.appendChild(optionsElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function selectAssistance(assistance) {
+            if (userSelection !== 'Besoin d\'assistance') return;
+            userAssistance = assistance;
+            addChatMessage(`Vous avez choisi : ${assistance}`);
+            if (assistance === 'Assistance pour ouverture de compte') {
+                showAccountOptions();
+            }
+        }
+
+        function showAccountOptions() {
+            let optionsHTML = `
+                <div class="mt-4 space-y-2">
+                    <button class="bg-purple-500 text-white px-4 py-2 rounded w-full" onclick="handleAccountType('Compte courant')">Compte courant</button>
+                    <button class="bg-purple-500 text-white px-4 py-2 rounded w-full" onclick="handleAccountType('Compte épargne')">Compte épargne</button>
+                    <button class="bg-purple-500 text-white px-4 py-2 rounded w-full" onclick="handleAccountType('Compte d\'entreprise')">Compte d'entreprise</button>
+                    <button class="bg-purple-500 text-white px-4 py-2 rounded w-full" onclick="handleAccountType('Compte joint')">Compte joint</button>
+                </div>
+            `;
+            addChatMessage('Choisissez un type de compte bancaire :', false);
+            let optionsElement = document.createElement('div');
+            optionsElement.innerHTML = optionsHTML;
+            chatContainer.appendChild(optionsElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function handleAccountType(accountType) {
+            addChatMessage(`Vous avez choisi : ${accountType}`);
+            if (accountType === 'Compte épargne') {
+                handleSavingsAccount();
+            } else if (accountType === 'Compte d\'entreprise') {
+                handleBusinessAccount();
+            }
+        }
+
+        function handleSavingsAccount() {
+            addChatMessage('Pour ouvrir un compte épargne, veuillez suivre les étapes suivantes :', false);
+            addChatMessage('1. Fournir une pièce d\'identité valide.', false);
+            addChatMessage('2. Fournir un justificatif de domicile.', false);
+            addChatMessage('Veuillez téléverser les documents requis en utilisant le bouton ci-dessous.', false);
+            awaitingUpload = true;
+        }
+
+        function handleBusinessAccount() {
+            addChatMessage('Pour ouvrir un compte d\'entreprise, veuillez suivre les étapes suivantes :', false);
+            addChatMessage('1. Fournir une pièce d\'identité valide.', false);
+            addChatMessage('2. Fournir un justificatif de domicile.', false);
+            addChatMessage('3. Fournir un extrait Kbis récent.', false);
+            addChatMessage('Veuillez téléverser les documents requis en utilisant le bouton ci-dessous.', false);
+            awaitingUpload = true;
+        }
+
+        function askQuestion(question) {
+            addChatMessage(question, false);
+        }
+
+        function sendUserMessage() {
+            let userInput = document.getElementById('user-input');
+            let message = userInput.value.trim();
+            if (message) {
+                addChatMessage(message);
+                userInput.value = '';
+
+                if (userAssistance === 'Assistance pour ouverture de compte' && awaitingUpload) {
+                    addChatMessage('Merci pour votre réponse. Nous allons traiter votre demande.');
+                    askQuestion('Quel est le montant initial que vous souhaitez déposer ?');
+                    awaitingUpload = false;
+                    awaitingAppointmentDate = true;
+                } else if (awaitingAppointmentDate) {
+                    addChatMessage(`Montant initial de dépôt: ${message}`);
+                    askAppointmentDate();
+                    awaitingAppointmentDate = false;
+                } else if (awaitingAppointmentTime) {
+                    addChatMessage(`Date de rendez-vous: ${message}`);
+                    askAppointmentTime();
+                    awaitingAppointmentTime = false;
+                } else {
+                    addChatMessage(`Heure de rendez-vous: ${message}`);
+                    addChatMessage('Votre rendez-vous est confirmé. Merci de vous rendre en agence pour finaliser la procédure.');
+                }
+            }
+        }
+
+        function askAppointmentDate() {
+            let dateElement = document.createElement('div');
+            dateElement.innerHTML = `
+                <label for="appointment-date" class="block mb-2">Sélectionnez une date pour votre rendez-vous :</label>
+                <input type="date" id="appointment-date" class="p-2 border rounded w-full" onchange="setAppointmentDate(event)">
+            `;
+            chatContainer.appendChild(dateElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function setAppointmentDate(event) {
+            let date = event.target.value;
+            if (date) {
+                addChatMessage(`Date de rendez-vous choisie : ${date}`);
+                askAppointmentTime();
+            }
+        }
+
+        function askAppointmentTime() {
+            let timeElement = document.createElement('div');
+            timeElement.innerHTML = `
+                <label for="appointment-time" class="block mb-2">Sélectionnez une heure pour votre rendez-vous :</label>
+                <input type="time" id="appointment-time" class="p-2 border rounded w-full" onchange="setAppointmentTime(event)">
+            `;
+            chatContainer.appendChild(timeElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function setAppointmentTime(event) {
+            let time = event.target.value;
+            if (time) {
+                addChatMessage(`Heure de rendez-vous choisie : ${time}`);
+                addChatMessage('Votre rendez-vous est confirmé. Merci de vous rendre en agence pour finaliser la procédure.');
+            }
+        }
+
+        function triggerFileUpload() {
+            document.getElementById('file-input').click();
+        }
+
+        function handleFileUpload(event) {
+            let file = event.target.files[0];
+            if (file) {
+                addChatMessage(`Document téléchargé : ${file.name}`, false);
+                if (userAssistance === 'Assistance pour ouverture de compte' && awaitingUpload) {
+                    askQuestion('Quel est le montant initial que vous souhaitez déposer ?');
+                    awaitingUpload = false;
+                    awaitingAppointmentDate = true;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
